@@ -54,6 +54,7 @@ function playGame() {
         const computerSelection = getComputerChoice();
         playRound(humanSelection, computerSelection);
     }
+    console.log(`Final scores: You: ${humanScore} Computer: ${computerScore}`)
     if (humanScore > computerScore) {
         alert("You won the game!")
     }

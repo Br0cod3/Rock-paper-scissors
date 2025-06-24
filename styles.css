@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+}
+
+body {
+    font-family: Roboto, sans-serif;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 95vw;
+    height: 90vh;
+    gap: 50px;
+}
+
+p {
+    font-size: 1.5em;
+    font-weight: lighter;
+}
+
+.btn {
+    background-color: #3882f6;
+    color: #f9faf8;
+    border: 0;
+    border-radius: 7px;
+    width: 250px;
+    height: 2rem;
+    font-weight: bold;
+}
+

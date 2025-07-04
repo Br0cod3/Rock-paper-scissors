@@ -12,8 +12,17 @@
 <body>
     <div class="flex-container">
             <h1> Rock, Paper or Scissors</h1>
-            <p><em>Click here to play</em></p>
-            <button class="btn">Play</button>
+            <p id="header-text"><em>Press any button below to play</em></p>
+            <div class="btn-container">
+                <button class="btn">Rock</button>
+                <button class="btn">Paper</button>
+                <button class="btn">Scissors</button>
+            </div>
+            <div id="game-results">
+                <p class="user-score"><em>Your Score: 0</em></p>
+                <p class="final-result"></p>
+                <p class="computer-score"><em>Computer Score: 0</em></p>
+            </div>
     </div>
     <script src="./script.js" type="text/javascript"></script>
 </body>

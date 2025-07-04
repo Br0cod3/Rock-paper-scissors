@@ -1,3 +1,9 @@
+let humanScore = 0;
+let computerScore = 0;
+const outputLog = document.querySelector(".final-result");
+const userChoice = document.querySelector(".user-score");
+const compChoice = document.querySelector(".computer-score");
+
 function getComputerChoice() {
     const rand = Math.random();
     if (rand < 0.333) {
@@ -9,67 +15,59 @@ function getComputerChoice() {
     return "Scissors";
 }
 
-function getHumanChoice() {
-    let userChoice = prompt("What is your pick: 'Rock', 'Paper' or 'Scissors'");
-    if (userChoice === null || userChoice.trim() == "") {
-        return getHumanChoice();
-    }
-    else {
-        return userChoice.trim();
+function gameOver() {
+    if (humanScore === 5 || computerScore === 5) {
+        if (humanScore > computerScore) {
+            outputLog.innerHTML = "<em>You Won! ^.^</em>";
+            humanScore = 0;
+            computerScore = 0;
+            userChoice.innerHTML = `<em>Your Score: ${humanScore}</em>`;
+            compChoice.innerHTML = `<em>Computer Score: ${computerScore}</em>`;
+        }
+        else {
+            outputLog.innerHTML = "<em>You Lost :-(</em>";
+            humanScore = 0;
+            computerScore = 0;
+            userChoice.innerHTML = `<em>Your Score: ${humanScore}</em>`;
+            compChoice.innerHTML = `<em>Computer Score: ${computerScore}</em>`;
+        }
     }
 }
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
+function playRound(humanChoice, computerChoice) {
+                outputLog.textContent = ""
 
-    function playRound(humanChoice, computerChoice) {
-    let humanChoiceCasing = `${humanChoice[0].toUpperCase()}${humanChoice.slice(1).toLowerCase()}`
-    let computerChoiceCasing = `${computerChoice[0].toUpperCase()}${computerChoice.slice(1).toLowerCase()}`
-
-    if (humanChoiceCasing == "Rock" && computerChoiceCasing == "Scissors") {
-        console.log("You win! Rock beats Scissors.");
+    if (humanChoice == "Rock" && computerChoice == "Scissors") {
+        outputLog.innerHTML = "<em>You win! Rock beats Scissors.</em>";
         humanScore++;
+        userChoice.innerHTML = `<em>Your Score: ${humanScore}</em>`;
     }
-    else if (humanChoiceCasing == "Paper" && computerChoiceCasing == "Rock") {
-        console.log("You win! Paper beats Rock.");
+    else if (humanChoice == "Paper" && computerChoice == "Rock") {
+        outputLog.innerHTML = "<em>You win! Paper beats Rock.</em>";
         humanScore++;
+        userChoice.innerHTML = `<em>Your Score: ${humanScore}</em>`;
     }
-    else if (humanChoiceCasing == "Scissors" && computerChoiceCasing == "Paper") {
-        console.log("You win! Scissors beats Paper.");
+    else if (humanChoice == "Scissors" && computerChoice == "Paper") {
+        outputLog.innerHTML = "<em>You win! Scissors beats Paper.</em>";
         humanScore++;
+        userChoice.innerHTML = `<em>Your Score: ${humanScore}</em>`;
     }
-    else if (humanChoiceCasing === computerChoiceCasing) {
-        console.log(`It's a draw you both chose ${humanChoiceCasing}`)
+    else if (humanChoice === computerChoice) {
+        outputLog.innerHTML = `<em>It's a draw you both chose ${humanChoice}</em>`;
     }
     else {
-        console.log(`You lose ${computerChoiceCasing} beats ${humanChoiceCasing}`);
+        outputLog.innerHTML = `<em>You lose ${computerChoice} beats ${humanChoice}</em>`;
         computerScore++;
+        compChoice.innerHTML = `<em>Computer Score: ${computerScore}</em>`;
     }
+
+    gameOver();
+
 }
 
-
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
-    console.log(`Final scores: You: ${humanScore} Computer: ${computerScore}`)
-    if (humanScore > computerScore) {
-        alert("You won the game!")
-    }
-    else if (computerScore > humanScore) {
-        alert("You Lost the game")
-    }
-    else {
-        alert("It's a tie!")
-    }
+const buttons = document.querySelectorAll(".btn")
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", () => {
+        playRound(buttons[i].textContent, getComputerChoice());
+    })
 }
-
-    
-let play = document.addEventListener("click", (event) =>{
-    if (event.target.classList.contains("btn")) {
-        playGame();
-    }
-})
-

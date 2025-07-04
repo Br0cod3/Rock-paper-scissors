@@ -35,7 +35,7 @@ function gameOver() {
 }
 
 function playRound(humanChoice, computerChoice) {
-                outputLog.textContent = ""
+    outputLog.textContent = ""
 
     if (humanChoice == "Rock" && computerChoice == "Scissors") {
         outputLog.innerHTML = "<em>You win! Rock beats Scissors.</em>";
